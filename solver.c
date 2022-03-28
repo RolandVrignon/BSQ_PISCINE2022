@@ -1,4 +1,4 @@
-#include "utils.h"
+#include "lib/utils.h"
 
 int     check_points(char **tab, int i, int j, int l)
 {

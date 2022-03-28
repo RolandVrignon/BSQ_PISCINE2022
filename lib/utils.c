@@ -10,7 +10,7 @@
 // /*                                                                            */
 // /* ************************************************************************** */
 
-// #include "utils.h"
+#include "utils.h"
 
 // void	end_print(int hundred, int dizaine, int units, t_dict *dict)
 // {

@@ -1,11 +1,5 @@
-bsq: map-gen.o utils.o utils.h
-	gcc -Wall -Werror -Wextra *.o -o bsq
-
-map-gen.o: map-gen.c solver.c utils.h
-	gcc -Wall -Werror -Wextra -c map-gen.c solver.c
-
-utils.o: utils.c one.c two.c three.c four.c five.c utils.h math_utils_two.c
-	gcc -Wall -Werror -Wextra -c utils.c one.c two.c three.c four.c five.c math_utils_two.c 
+bsq: main.c ./lib/utils.h solver.c
+	gcc -Wall -Werror -Wextra ./lib/*.c main.c solver.c -o bsq
 
 fclean:
 	rm *.o bsq
