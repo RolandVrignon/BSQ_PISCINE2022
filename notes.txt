@@ -1,0 +1,10 @@
+Authorized functions :
+exit
+open
+close
+write
+read
+malloc
+free
+
+si plusieurs solutions, celle du haut puis gauche.
