@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "utils.h"
+#include <time.h>
 
 int main(int argc, char **argv)
 {
@@ -13,7 +14,7 @@ int main(int argc, char **argv)
 
     if (argc == 4)
     {
-        int rand_num = 4;
+        int rand_num = (int)time(NULL);
         int density = ft_atoi(argv[3]);
         for (i = 0; i < y; i++) {
             map[i] = malloc(sizeof(char) * x + 1);

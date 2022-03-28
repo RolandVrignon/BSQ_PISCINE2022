@@ -12,7 +12,7 @@ int     check_points(char **tab, int i, int j, int l)
         j = j_cp;
         while (j < j_cp + l && tab[i][j] != '\n')
         {
-            printf("Tab[%d][%d] = %c\n", i, j, tab[i][j]);
+            // printf("Tab[%d][%d] = %c\n", i, j, tab[i][j]);
             if (tab[i][j] == 'o')
                 return (0);
             j++;
@@ -58,14 +58,14 @@ char    **solve(char **tab, int x, int y)
     i = 0;
     j = 0;
 
-    while (i + l < y)
+    while (i + l <= y)
     {
         j = 0;
-        while (j + l < x)
+        while (j + l <= x)
         {
             while(check_points(tab, i, j, l) && j + l < x && i + l < y)
             {
-                printf("LA SOLUTION au point [%d][%d] de longueur %d\n", i, j, l);
+                // printf("LA SOLUTION au point [%d][%d] de longueur %d\n", i, j, l);
                 add_element(solution, i, j, l);
                 solution = solution->next;
                 l++;
