@@ -20,19 +20,14 @@ int main(int argc, char **argv)
             for (j = 0; j < x; j ++) {
                 rand_num = linear_congruenial_generator(rand_num, j);
                 if (rand_num < density) 
-                {
-                    //write(1, "o", 1);
                     map[i][j] = 'o';
-                }
                 else 
-                {
-                    //write(1, ".", 1);
                     map[i][j] = '.';
-                }
             }
-           //write(1, "\n", 1);
         }
     }
+
+    map = solve(map, x, y);
 
     j = 0;
 	i = -1;
@@ -45,8 +40,9 @@ int main(int argc, char **argv)
             write(1, " ", 1);
 		}
 		write(1, "\n", 1);
-	}
-    printf("%d et %d\n", check_points(map, 0, 0, 1), check_points(map, 0, 0, 2));
-    printf("%d et %d\n", check_points(map, 0, 0, 3), check_points(map, 0, 0, 4));
+    }
+
+    
+
     return (0);
 }

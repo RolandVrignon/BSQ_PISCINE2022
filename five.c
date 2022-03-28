@@ -12,25 +12,25 @@
 
 #include "utils.h"
 
-t_dict	*go_to(t_dict *dict, int int_search)
-{
-	char	*search;
-	int		current_key;
+// t_dict	*go_to(t_dict *dict, int int_search)
+// {
+// 	char	*search;
+// 	int		current_key;
 
-	search = ft_itoa(int_search);
-	current_key = ft_atoi(dict->key);
-	if (int_search > current_key)
-	{
-		while (ft_strcmp(search, dict->key) != 0 && dict->next != NULL)
-			dict = dict->next;
-	}
-	else if (int_search < current_key)
-	{
-		while (ft_strcmp(search, dict->key) != 0 && dict->next != NULL)
-			dict = dict->previous;
-	}
-	return (dict);
-}
+// 	search = ft_itoa(int_search);
+// 	current_key = ft_atoi(dict->key);
+// 	if (int_search > current_key)
+// 	{
+// 		while (ft_strcmp(search, dict->key) != 0 && dict->next != NULL)
+// 			dict = dict->next;
+// 	}
+// 	else if (int_search < current_key)
+// 	{
+// 		while (ft_strcmp(search, dict->key) != 0 && dict->next != NULL)
+// 			dict = dict->previous;
+// 	}
+// 	return (dict);
+// }
 
 char	*ft_substr(char *str, int pos, int len)
 {

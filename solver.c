@@ -1,74 +1,96 @@
 #include "utils.h"
-#include <math.h>
-/* int i;
-int j;
 
-int L; */
-
-//map_surface_max[i-1][j-1] = L * L;
-
-int     check_points(char **map, int i, int j, int L)
+int     check_points(char **tab, int i, int j, int l)
 {
-    int max_i;
-    int max_j;
+    int j_cp;
+    int i_cp;
 
-    max_i = i + L;
-    max_j = j + L;
-    while (i <= max_i)
+    j_cp = j;
+    i_cp = i;
+    while (i < i_cp + l)
     {
-        while (j <= max_j)
+        j = j_cp;
+        while (j < j_cp + l && tab[i][j] != '\n')
         {
-            if (map[i][j] == 'o')
+            printf("Tab[%d][%d] = %c\n", i, j, tab[i][j]);
+            if (tab[i][j] == 'o')
                 return (0);
-            else
-                j++;
+            j++;
         }
         i++;
     }
     return (1);
 }
 
-
-/* 
-i = 0;
-j = 0;
-while (i < ft_atoi(argv[1]))
+t_solutions	*create_element(t_solutions *tmp, int x, int y, int l)
 {
-    while (j < ft_atoi(argv[2]))
+	t_solutions	*solutions;
+
+	solutions = (t_solutions *)malloc(sizeof(t_solutions));
+    solutions->x = x;
+    solutions->y = y;
+    solutions->L = l;
+	solutions->next = NULL;
+	solutions->prev = tmp;
+	return (solutions);
+}
+
+void	add_element(t_solutions *solutions, int x, int y, int l)
+{
+	t_solutions	*tmp;
+
+	while (solutions->next != NULL)
+		solutions = solutions->next;
+	tmp = solutions;
+	solutions->next = create_element(tmp, x, y, l);
+}
+
+char    **solve(char **tab, int x, int y)
+{
+    int l;
+    int i;
+    int j;
+    t_solutions *solution;
+
+    solution = create_element(0, 0, 0, 1);
+
+    l = 1;
+    i = 0;
+    j = 0;
+
+    while (i + l < y)
     {
-        while (j + L < ft_atoi(argv[2]) && i + L < ft_atoi(argv[1]))
+        j = 0;
+        while (j + l < x)
         {
-            if (map[i + L][j + L] == '.' && check_points(map, i, j, L))
+            while(check_points(tab, i, j, l) && j + l < x && i + l < y)
             {
-                solutions->y = i;
-                solutions->x = j;
-                solutions->L = L;
-                L++;
-            }
-            else
-            {
+                printf("LA SOLUTION au point [%d][%d] de longueur %d\n", i, j, l);
+                add_element(solution, i, j, l);
                 solution = solution->next;
-                //condition pour break du while l++;
-                L = 0;
+                l++;
             }
+            j++;
         }
-        j++;
+        i++;
     }
-    i++;
-} */
 
-//iter on list until we put all biggest lengths and their adresses
-/* int L_max;
+    i = solution->x;
+    j = solution->y;
+    l = solution->L;
 
-L_max = 0;
-while (solution->next != NULL)
-{
-    if (solutions->L >= L_max)
+    while (i < solution->x + l)
     {
-        L_max = solutions->L;
-        adress = solutions->curr;
+        j = solution->y;
+        while(j < solution->y + l)
+        {
+            tab[i][j] = 'X';
+            j++;
+        }
+        i++;
     }
-    solutions = solutions->next;
-} */
 
-//
+    printf("Adresse Solution : %p || X : %d || Y : %d || L : %d\n", solution, solution->x, solution->y, solution->L);
+
+    return(tab);
+}

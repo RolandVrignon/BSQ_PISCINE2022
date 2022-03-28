@@ -20,14 +20,6 @@
 # include <fcntl.h>
 # include <stddef.h>
 
-typedef struct dict
-{
-	char		*key;
-	char		*value;
-	struct dict	*next;
-	struct dict	*previous;
-}	t_dict;
-
 typedef struct solutions
 {
     int     x;
@@ -35,7 +27,6 @@ typedef struct solutions
     int     L;
     struct solutions *prev;
     struct solutions *next;
-    struct solutions *curr;
 } t_solutions;
 
 void			ft_putchar(char c);
@@ -68,13 +59,15 @@ char			*ft_split_key(char *str);
 
 char			*ft_split_value(char *str);
 
-t_dict			*create_element(char *str, t_dict *tmp);
+t_solutions	    *create_element(t_solutions *tmp, int x, int y, int l);
 
-void			add_element(char *str, t_dict *elem);
+void			add_element(t_solutions *solutions, int x, int y, int l);
 
-t_dict			*create_list(int ac, char *file);
+// t_dict			*create_list(int ac, char *file);
 
-t_dict			*go_to(t_dict *dict, int int_search);
+// t_dict			*go_to(t_dict *dict, int int_search);
+
+int             linear_congruenial_generator(int x_gen, int c);
 
 void			print_element(char *str);
 
@@ -84,12 +77,8 @@ char			**triple_process(char *str, char **tab, int len, int modulo);
 
 char			**triple_tab(char *str);
 
-void			print_number(char *nbr, t_dict *dict);
-
-void			print_tab(t_dict *dict, char **tab);
-
-int				linear_congruenial_generator(int x_gen, int c);
-
 int     		check_points(char **map, int i, int j, int L);
+
+char            **solve(char **tab, int x, int y);
 
 #endif

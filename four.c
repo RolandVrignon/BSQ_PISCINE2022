@@ -50,50 +50,50 @@ char	*ft_split_value(char *str)
 	return (ret);
 }
 
-t_dict	*create_element(char *str, t_dict *tmp)
-{
-	t_dict	*elem;
+// t_dict	*create_element(char *str, t_dict *tmp)
+// {
+// 	t_dict	*elem;
 
-	elem = (t_dict *)malloc(sizeof(t_dict));
-	elem->key = ft_split_key(str);
-	elem->value = ft_split_value(str);
-	elem->next = NULL;
-	elem->previous = tmp;
-	return (elem);
-}
+// 	elem = (t_dict *)malloc(sizeof(t_dict));
+// 	elem->key = ft_split_key(str);
+// 	elem->value = ft_split_value(str);
+// 	elem->next = NULL;
+// 	elem->previous = tmp;
+// 	return (elem);
+// }
 
-void	add_element(char *str, t_dict *elem)
-{
-	t_dict	*tmp;
+// void	add_element(char *str, t_dict *elem)
+// {
+// 	t_dict	*tmp;
 
-	while (elem->next != NULL)
-		elem = elem->next;
-	tmp = elem;
-	elem->next = create_element(str, tmp);
-}
+// 	while (elem->next != NULL)
+// 		elem = elem->next;
+// 	tmp = elem;
+// 	elem->next = create_element(str, tmp);
+// }
 
-t_dict	*create_list(int ac, char *file)
-{
-	t_dict	*dict;
-	int		fd;
-	int		i;
-	char	read_buffer[1000];
-	char	**lines;
+// t_dict	*create_list(int ac, char *file)
+// {
+// 	t_dict	*dict;
+// 	int		fd;
+// 	int		i;
+// 	char	read_buffer[1000];
+// 	char	**lines;
 
-	fd = open(file, O_RDONLY);
-	if (fd != -1 && ac)
-	{
-		read(fd, read_buffer, 1000);
-		close(fd);
-		lines = ft_split(read_buffer, "\n");
-		i = 0;
-		dict = create_element(lines[i], 0);
-		while (lines[i] != NULL)
-		{
-			add_element(lines[i], dict);
-			i++;
-		}
-		lines[i] = 0;
-	}
-	return (dict);
-}
+// 	fd = open(file, O_RDONLY);
+// 	if (fd != -1 && ac)
+// 	{
+// 		read(fd, read_buffer, 1000);
+// 		close(fd);
+// 		lines = ft_split(read_buffer, "\n");
+// 		i = 0;
+// 		dict = create_element(lines[i], 0);
+// 		while (lines[i] != NULL)
+// 		{
+// 			add_element(lines[i], dict);
+// 			i++;
+// 		}
+// 		lines[i] = 0;
+// 	}
+// 	return (dict);
+// }
