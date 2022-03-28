@@ -21,12 +21,12 @@ int main(int argc, char **argv)
                 rand_num = linear_congruenial_generator(rand_num, j);
                 if (rand_num < density) 
                 {
-                    write(1, "o", 1);
+                    //write(1, "o", 1);
                     tab[i][j] = 'o';
                 }
                 else 
                 {
-                    write(1, ".", 1);
+                    //write(1, ".", 1);
                     tab[i][j] = '.';
                 }
             }
@@ -47,6 +47,7 @@ int main(int argc, char **argv)
 		while (j++ < x)
 		{
 			write(1, &tab[i][j], 1);
+            write(1, " ", 1);
 		}
 		write(1, "\n", 1);
 	}
