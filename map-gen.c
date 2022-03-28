@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 
     if (argc == 4)
     {
-        int rand_num = 3;
+        int rand_num = 4;
         int density = ft_atoi(argv[3]);
         for (i = 0; i < y; i++) {
             tab[i] = malloc(sizeof(char) * x + 1);
@@ -30,14 +30,9 @@ int main(int argc, char **argv)
                     tab[i][j] = '.';
                 }
             }
-           write(1, "\n", 1);
+           //write(1, "\n", 1);
         }
     }
-
-    write(1, "\n", 1);
-    write(1, "\n", 1);
-    write(1, "\n", 1);
-    write(1, "\n", 1);
 
     j = 0;
 	i = -1;
