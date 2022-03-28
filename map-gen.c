@@ -4,30 +4,30 @@
 
 int main(int argc, char **argv)
 {
-    char **tab;
+    char **map;
     int x = ft_atoi(argv[1]);
     int y = ft_atoi(argv[2]);
     int i;
     int j;
-    tab = malloc(sizeof(char *) * y + 1);
+    map = malloc(sizeof(char *) * y + 1);
 
     if (argc == 4)
     {
         int rand_num = 4;
         int density = ft_atoi(argv[3]);
         for (i = 0; i < y; i++) {
-            tab[i] = malloc(sizeof(char) * x + 1);
+            map[i] = malloc(sizeof(char) * x + 1);
             for (j = 0; j < x; j ++) {
                 rand_num = linear_congruenial_generator(rand_num, j);
                 if (rand_num < density) 
                 {
                     //write(1, "o", 1);
-                    tab[i][j] = 'o';
+                    map[i][j] = 'o';
                 }
                 else 
                 {
                     //write(1, ".", 1);
-                    tab[i][j] = '.';
+                    map[i][j] = '.';
                 }
             }
            //write(1, "\n", 1);
@@ -41,11 +41,12 @@ int main(int argc, char **argv)
 		j = -1;
 		while (j++ < x)
 		{
-			write(1, &tab[i][j], 1);
+			write(1, &map[i][j], 1);
             write(1, " ", 1);
 		}
 		write(1, "\n", 1);
 	}
-
+    printf("%d et %d\n", check_points(map, 0, 0, 1), check_points(map, 0, 0, 2));
+    printf("%d et %d\n", check_points(map, 0, 0, 3), check_points(map, 0, 0, 4));
     return (0);
 }

@@ -28,6 +28,16 @@ typedef struct dict
 	struct dict	*previous;
 }	t_dict;
 
+typedef struct solutions
+{
+    int     x;
+    int     y;
+    int     L;
+    struct solutions *prev;
+    struct solutions *next;
+    struct solutions *curr;
+} t_solutions;
+
 void			ft_putchar(char c);
 
 void			ft_putstr(char *str);
@@ -79,5 +89,7 @@ void			print_number(char *nbr, t_dict *dict);
 void			print_tab(t_dict *dict, char **tab);
 
 int				linear_congruenial_generator(int x_gen, int c);
+
+int     		check_points(char **map, int i, int j, int L);
 
 #endif
