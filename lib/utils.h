@@ -34,6 +34,7 @@ typedef struct s_infos
     int lines;
     char obstacle;
     char full;
+    char empty;
 }   t_infos;
 
 typedef struct s_point

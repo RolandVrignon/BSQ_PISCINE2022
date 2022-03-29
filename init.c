@@ -6,13 +6,15 @@ t_infos *get_informations(char *str)
     int i;
     char *lines;
 
+
     while (str[i] != '\0')
         i++;
-    lines = ft_split_key(str);
     infos = (t_infos *)malloc(sizeof(t_infos));
-    infos->lines = ft_atoi(lines);
+    infos->empty = str[i - 3];
     infos->obstacle = str[i - 2];
     infos->full = str[i - 1];
+    lines = ft_split_key(str);
+    infos->lines = ft_atoi(lines);
     return (infos);
 }
 

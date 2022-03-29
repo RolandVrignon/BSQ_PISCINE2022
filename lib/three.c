@@ -88,7 +88,7 @@ unsigned int	strlen_space(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] != '.')
+	while (str[i] >= '0' && str[i] <= '9')
 		i++;
 	return (i);
 }
@@ -102,7 +102,8 @@ char	*ft_split_key(char *str)
 	i = 0;
 	len = strlen_space(str);
 	key = (char *)malloc(sizeof(char) * len + 1);
-	while (str[i] != '.')
+	
+	while (str[i] >= '0' && str[i] <= '9')
 	{
 		key[i] = str[i];
 		i++;
