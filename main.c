@@ -20,7 +20,8 @@ int     main(int ac, char **av)
         {
             lines = open_file(av[i]);
             if (!lines)
-            {   write(1,"\n",1); 
+            {   
+                write(1,"\n",1); 
                 i++;
             }
             else
