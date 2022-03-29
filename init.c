@@ -26,10 +26,7 @@ int    file_size(char *file)
     n = 0;
     fd = open(file, O_RDONLY);
     if (fd == -1)
-    {
-        write(2, "map error\n", 10);
-        exit (0);
-    }
+        return (0);
     while (read(fd, &i, 1) != 0 && i != EOF)
         n++;
     close(fd);
