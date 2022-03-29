@@ -60,7 +60,7 @@ char    **solve(char **tab, int x, int y, t_infos *infos)
     point = (t_point *)malloc(sizeof(t_point));
 
     l = 1;
-    i = 1;
+    i = 0;
     j = 0;
 
     while (i + l <= y)
