@@ -100,4 +100,6 @@ char            **create_tab(char **lines, t_infos *infos, int line_length);
 
 int             get_line_length(char *lines);
 
+void            print_map(char **map, t_infos *infos, int line_length);
+
 #endif

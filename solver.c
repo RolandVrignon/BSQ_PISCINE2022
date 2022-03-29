@@ -100,3 +100,28 @@ char    **solve(char **tab, int x, int y, t_infos *infos)
 
     return(tab);
 }
+
+void    print_map(char **map, t_infos *infos, int line_length)
+{
+        int i;
+        int j;
+        int x;
+        int y;
+
+        x = line_length;
+        y = infos->lines;
+        i = 0;
+        while (i < y)
+        {
+            j = 0;
+            while (j< x)
+            {
+                write(1, &map[i][j], 1);
+                write(1, " ", 1);
+                j++;
+            }
+            write(1, "\n", 1);
+            i++;
+        }
+        write(1, "\n", 1);
+}
