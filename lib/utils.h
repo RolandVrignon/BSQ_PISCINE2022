@@ -29,6 +29,19 @@ typedef struct solutions
     struct solutions *next;
 } t_solutions;
 
+typedef struct s_infos
+{
+    int lines;
+    char obstacle;
+    char full;
+}   t_infos;
+
+typedef struct s_point
+{
+    int x;
+    int y;
+}   t_point;
+
 void			ft_putchar(char c);
 
 void			ft_putstr(char *str);
@@ -77,8 +90,8 @@ char			**triple_process(char *str, char **tab, int len, int modulo);
 
 char			**triple_tab(char *str);
 
-int     		check_points(char **map, int i, int j, int L);
+int     		check_points(char **tab, t_point *point, int l, t_infos *infos);
 
-char            **solve(char **tab, int x, int y);
+char            **solve(char **tab, int x, int y, t_infos *infos);
 
 #endif

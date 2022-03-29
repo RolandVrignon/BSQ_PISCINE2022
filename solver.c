@@ -1,10 +1,14 @@
 #include "lib/utils.h"
 
-int     check_points(char **tab, int i, int j, int l)
+int     check_points(char **tab, t_point *point, int l, t_infos *infos)
 {
+    int j;
+    int i;
     int j_cp;
     int i_cp;
 
+    j = point->x;
+    i = point->y;
     j_cp = j;
     i_cp = i;
     while (i < i_cp + l)
@@ -12,8 +16,7 @@ int     check_points(char **tab, int i, int j, int l)
         j = j_cp;
         while (j < j_cp + l && tab[i][j] != '\n')
         {
-            // printf("Tab[%d][%d] = %c\n", i, j, tab[i][j]);
-            if (tab[i][j] == 'o')
+            if (tab[i][j] == infos->obstacle)
                 return (0);
             j++;
         }
@@ -45,14 +48,16 @@ void	add_element(t_solutions *solutions, int x, int y, int l)
 	solutions->next = create_element(tmp, x, y, l);
 }
 
-char    **solve(char **tab, int x, int y)
+char    **solve(char **tab, int x, int y, t_infos *infos)
 {
     int l;
     int i;
     int j;
     t_solutions *solution;
+    t_point *point;
 
     solution = create_element(0, 0, 0, 1);
+    point = (t_point *)malloc(sizeof(t_point));
 
     l = 1;
     i = 1;
@@ -63,7 +68,9 @@ char    **solve(char **tab, int x, int y)
         j = 0;
         while (j + l <= x)
         {
-            while(check_points(tab, i, j, l) && j + l <= x && i + l <= y)
+            point->x = j;
+            point->y = i;
+            while(check_points(tab, point, l, infos) && j + l <= x && i + l <= y)
             {
                 add_element(solution, i, j, l);
                 solution = solution->next;
@@ -83,7 +90,7 @@ char    **solve(char **tab, int x, int y)
         j = solution->y;
         while(j < solution->y + l)
         {
-            tab[i][j] = 'X';
+            tab[i][j] = infos->full;
             j++;
         }
         i++;
