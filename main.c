@@ -12,30 +12,39 @@ int     main(int ac, char **av)
     int j;
     int x;
     int y;
+    int z;
     int line_length;
     char **map;
 
-    if (ac == 2)
+    if (ac >= 2)
     {
-        lines = open_file(av[1]);
-        infos = get_informations(lines[0]);
-        line_length = get_line_length(lines[1]);
-        map = create_tab(lines, infos, line_length);
-        x = line_length;
-        y = infos->lines;
-        map = solve(map, x, y, infos);
-        i = 0;
-        while (i < y)
+        z = 1;
+        while(av[z])
         {
-            j = 0;
-            while (j< x)
+            lines = open_file(av[z]);
+            infos = get_informations(lines[0]);
+            line_length = get_line_length(lines[1]);
+            map = create_tab(lines, infos, line_length);
+            x = line_length;
+            y = infos->lines;
+            map = solve(map, x, y, infos);
+            i = 0;
+            while (i < y)
             {
-                write(1, &map[i][j], 1);
-                // write(1, " ", 1);
-                j++;
+                j = 0;
+                while (j< x)
+                {
+                    write(1, &map[i][j], 1);
+                    write(1, " ", 1);
+                    j++;
+                }
+                write(1, "\n", 1);
+                i++;
             }
             write(1, "\n", 1);
-            i++;
+            free(lines);
+            free(map);
+            z++;
         }
     }
     return (0);

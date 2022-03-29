@@ -27,7 +27,7 @@ typedef struct solutions
     int     L;
     struct solutions *prev;
     struct solutions *next;
-} t_solutions;
+}   t_solutions;
 
 typedef struct s_infos
 {
@@ -75,10 +75,6 @@ char			*ft_split_value(char *str);
 t_solutions	    *create_element(t_solutions *tmp, int x, int y, int l);
 
 void			add_element(t_solutions *solutions, int x, int y, int l);
-
-// t_dict			*create_list(int ac, char *file);
-
-// t_dict			*go_to(t_dict *dict, int int_search);
 
 int             linear_congruenial_generator(int x_gen, int c);
 
