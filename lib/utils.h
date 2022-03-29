@@ -94,4 +94,14 @@ int     		check_points(char **tab, t_point *point, int l, t_infos *infos);
 
 char            **solve(char **tab, int x, int y, t_infos *infos);
 
+t_infos         *get_informations(char *str);
+
+int             file_size(char *file);
+
+char            **open_file(char *str);
+
+char            **create_tab(char **lines, t_infos *infos, int line_length);
+
+int             get_line_length(char *lines);
+
 #endif
