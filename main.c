@@ -3,13 +3,6 @@
 #include "lib/utils.h"
 #include <time.h>
 
-typedef struct s_infos
-{
-    int lines;
-    char obstacle;
-    char full;
-}   t_infos;
-
 t_infos *get_informations(char *str)
 {
     t_infos *infos;
@@ -26,17 +19,32 @@ t_infos *get_informations(char *str)
     return (infos);
 }
 
+int    file_size(char *file)
+{
+    int fd;
+    char i;
+    int n;
+
+    i = 0;
+    n = 0;
+    fd = open(file, O_RDONLY);
+    while (read(fd, &i, 1) != 0 && i != EOF)
+        n++;
+    close(fd);
+    return (n);
+}
+
 char    **open_file(char *str)
 {
-    char **lines;
-    void *read_buffer;
-    off_t fileLength;
-    int fd;
+    char    **lines;
+    void    *read_buffer;
+    int   fileLength;
+    int     fd;
 
+    fileLength = file_size(str);
     fd = open(str, O_RDONLY);
     if (fd == -1)
         return (0);
-    fileLength = lseek(fd, 0, SEEK_END) + 100;
     if (fileLength < 0)
         return (0);
     read_buffer = malloc(sizeof(char) * fileLength);
@@ -107,7 +115,7 @@ int     main(int ac, char **av)
         map = create_tab(lines, infos, line_length);
         x = line_length;
         y = infos->lines;
-        map = solve(map, x, y);
+        map = solve(map, x, y, infos);
         i = 0;
         while (i < y)
         {
