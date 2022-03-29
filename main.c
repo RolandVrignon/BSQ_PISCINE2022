@@ -123,7 +123,7 @@ int     main(int ac, char **av)
             while (j< x)
             {
                 write(1, &map[i][j], 1);
-                write(1, " ", 1);
+                // write(1, " ", 1);
                 j++;
             }
             write(1, "\n", 1);
