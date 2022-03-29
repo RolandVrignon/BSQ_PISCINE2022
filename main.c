@@ -104,9 +104,6 @@ int     main(int ac, char **av)
         lines = open_file(av[1]);
         infos = get_informations(lines[0]);
         line_length = get_line_length(lines[1]);
-        // printf("%s\n\n\n\n\n", lines[0]);
-        // printf("Lines : %d\n", infos->lines);
-        // printf("Line length : %d\n", line_length);
         map = create_tab(lines, infos, line_length);
         x = line_length;
         y = infos->lines;
@@ -117,7 +114,6 @@ int     main(int ac, char **av)
             j = 0;
             while (j< x)
             {
-                // printf("Map[%d][%d] = %c\n", i, j, map[i][j]);
                 write(1, &map[i][j], 1);
                 write(1, " ", 1);
                 j++;

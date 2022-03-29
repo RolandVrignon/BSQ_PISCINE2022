@@ -65,7 +65,6 @@ char    **solve(char **tab, int x, int y)
         {
             while(check_points(tab, i, j, l) && j + l <= x && i + l <= y)
             {
-                // printf("LA SOLUTION au point [%d][%d] de longueur %d\n", i, j, l);
                 add_element(solution, i, j, l);
                 solution = solution->next;
                 l++;
