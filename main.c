@@ -7,18 +7,13 @@ int     main(int ac, char **av)
 {
     t_infos *infos;
     char **lines;
-    char *buffer;
     int i;
     int x;
     int y;
     int line_length;
     char **map;
-
-    if (ac == 1)
-    {
-        
-    }
-    else if (ac >= 2)
+    
+    if (ac >= 2)
     {
         i = 1;
         while(av[i])
