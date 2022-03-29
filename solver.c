@@ -58,11 +58,9 @@ char    **solve(char **tab, int x, int y, t_infos *infos)
 
     solution = create_element(0, 0, 0, 1);
     point = (t_point *)malloc(sizeof(t_point));
-
     l = 1;
     i = 0;
     j = 0;
-
     while (i + l <= y)
     {
         j = 0;
@@ -80,11 +78,9 @@ char    **solve(char **tab, int x, int y, t_infos *infos)
         }
         i++;
     }
-
     i = solution->x;
     j = solution->y;
     l = solution->L;
-
     while (i < solution->x + l)
     {
         j = solution->y;
@@ -95,7 +91,6 @@ char    **solve(char **tab, int x, int y, t_infos *infos)
         }
         i++;
     }
-
     return(tab);
 }
 

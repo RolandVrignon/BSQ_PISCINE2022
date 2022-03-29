@@ -4,17 +4,18 @@ t_infos *get_informations(char *str)
 {
     t_infos *infos;
     int i;
-    char *lines;
+    char *line;
 
 
+    infos = (t_infos *)malloc(sizeof(t_infos));
+    i = 0;
     while (str[i] != '\0')
         i++;
-    infos = (t_infos *)malloc(sizeof(t_infos));
     infos->empty = str[i - 3];
     infos->obstacle = str[i - 2];
     infos->full = str[i - 1];
-    lines = ft_split_key(str);
-    infos->lines = ft_atoi(lines);
+    line = ft_split_key(str);
+    infos->lines = ft_atoi(line);
     return (infos);
 }
 
@@ -44,12 +45,9 @@ char    **open_file(char *str)
 
     fileLength = file_size(str);
     if (!fileLength)
-    {
-        write(2, "map error\n", 10);
         return (0);
-    }
     fd = open(str, O_RDONLY);
-    read_buffer = malloc(sizeof(char) * fileLength);
+    read_buffer = malloc(sizeof(char *) * fileLength);
     close(fd);
     fd = open(str, O_RDONLY);
     read(fd, read_buffer, fileLength);
