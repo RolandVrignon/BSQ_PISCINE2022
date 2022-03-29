@@ -25,6 +25,11 @@ int    file_size(char *file)
     i = 0;
     n = 0;
     fd = open(file, O_RDONLY);
+    if (fd == -1)
+    {
+        write(2, "map error\n", 10);
+        exit (0);
+    }
     while (read(fd, &i, 1) != 0 && i != EOF)
         n++;
     close(fd);
@@ -39,11 +44,12 @@ char    **open_file(char *str)
     int     fd;
 
     fileLength = file_size(str);
+    if (!fileLength)
+    {
+        write(2, "map error\n", 10);
+        return (0);
+    }
     fd = open(str, O_RDONLY);
-    if (fd == -1)
-        return (0);
-    if (fileLength < 0)
-        return (0);
     read_buffer = malloc(sizeof(char) * fileLength);
     close(fd);
     fd = open(str, O_RDONLY);
@@ -87,7 +93,5 @@ int     get_line_length(char *lines)
     i = 0;
     while (lines[i] != '\0')
         i++;
-
-    // printf("length : %d", i);
     return (i);
 }

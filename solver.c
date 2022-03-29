@@ -96,8 +96,6 @@ char    **solve(char **tab, int x, int y, t_infos *infos)
         i++;
     }
 
-    // printf("Adresse Solution : %p || X : %d || Y : %d || L : %d\n", solution, solution->x, solution->y, solution->L);
-
     return(tab);
 }
 
