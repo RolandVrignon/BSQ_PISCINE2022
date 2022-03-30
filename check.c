@@ -73,16 +73,10 @@ int	check(char **lines)
 	return (go);
 }
 
-void	free_stuffs(char **lines, char **map, t_infos *infos)
+void	free_stuffs(char **map, t_infos *infos)
 {
 	int	i;
 
-	i = 0;
-	while (i < infos->lines)
-	{
-		free(lines[i]);
-		i++;
-	}
 	i = 0;
 	while (i < infos->lines)
 	{
@@ -104,5 +98,5 @@ void	make_process(char **lines)
 	map = create_tab(lines, infos, line_length);
 	map = solve(map, infos);
 	print_map(map, infos, line_length);
-	free_stuffs(lines, map, infos);
+	free_stuffs(map, infos);
 }

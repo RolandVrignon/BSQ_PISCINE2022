@@ -28,6 +28,7 @@ t_infos	*get_informations(char *str)
 	line = ft_substr(str, 0, i - 3);
 	infos->lines = ft_atoi(line);
 	infos->line_length = 0;
+	free(line);
 	return (infos);
 }
 

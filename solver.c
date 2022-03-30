@@ -24,6 +24,13 @@ void	free_solution(t_solutions *solution)
 	}
 }
 
+int	is_ok(int j, int i, int l, t_infos *infos)
+{
+	if (j + l <= infos->line_length && i + l <= infos->lines)
+		return (1);
+	return (0);
+}
+
 t_solutions	*solve_process(t_solutions *solution, char **tab, t_infos *infos)
 {
 	t_point	*point;
@@ -41,8 +48,7 @@ t_solutions	*solve_process(t_solutions *solution, char **tab, t_infos *infos)
 		{
 			point->x = j;
 			point->y = i;
-			while (check_points(tab, point, l, infos)
-				&& j + l <= infos->line_length && i + l <= infos->lines)
+			while (check_points(tab, point, l, infos) && is_ok(j, i, l, infos))
 			{
 				add_element(solution, i, j, l);
 				solution = solution->next;
@@ -50,6 +56,7 @@ t_solutions	*solve_process(t_solutions *solution, char **tab, t_infos *infos)
 			}
 		}
 	}
+	free(point);
 	return (solution);
 }
 
