@@ -50,10 +50,18 @@ int	check_lines_lenght(char **lines)
 
 int	check(char **lines)
 {
-	int	go;
+	int		go;
+	int		i;
+	t_infos	*infos;
 
+	i = 0;
 	go = 1;
+	infos = get_informations(lines[0]);
+	while (lines[i])
+		i++;
 	if (!lines)
+		go = 0;
+	else if (infos->lines != i - 1)
 		go = 0;
 	else if (!check_lines_lenght(lines))
 		go = 0;
@@ -76,4 +84,5 @@ void	make_process(char **lines)
 	print_map(map, infos, line_length);
 	free(lines);
 	free(map);
+	free(infos);
 }

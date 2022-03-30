@@ -21,7 +21,7 @@ t_solutions	*solve_process(t_solutions *solution, char **tab, t_infos *infos)
 
 	point = (t_point *)malloc(sizeof(t_point));
 	i = -1;
-	l = 1;
+	l = 0;
 	while (i++ + l <= infos->lines)
 	{
 		j = -1;
@@ -38,6 +38,7 @@ t_solutions	*solve_process(t_solutions *solution, char **tab, t_infos *infos)
 			}
 		}
 	}
+	free(point);
 	return (solution);
 }
 
@@ -64,6 +65,7 @@ char	**solve(char **tab, t_infos *infos)
 		}
 		i++;
 	}
+	free(solution);
 	return (tab);
 }
 

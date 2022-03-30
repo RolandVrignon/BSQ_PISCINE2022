@@ -64,6 +64,7 @@ char	**open_file(char *str)
 	fd = open(str, O_RDONLY);
 	read(fd, read_buffer, file_length);
 	lines = ft_split(read_buffer, "\n");
+	free(read_buffer);
 	return (lines);
 }
 
