@@ -12,6 +12,15 @@
 
 #include "lib/utils.h"
 
+int	check_infos(t_infos	*infos)
+{
+	if (infos->empty == infos->obstacle || infos->empty == infos->full
+		|| infos->full == infos->obstacle)
+		return (0);
+	else
+		return (1);
+}
+
 int	check_lines_lenght(char **lines)
 {
 	int		i;
@@ -20,8 +29,7 @@ int	check_lines_lenght(char **lines)
 	t_infos	*infos;
 
 	infos = get_informations(lines[0]);
-	if (infos->empty == infos->obstacle || infos->empty == infos->full
-		|| infos->full == infos->obstacle)
+	if (!check_infos(infos))
 		return (0);
 	i = 1;
 	size = -1;
@@ -30,9 +38,7 @@ int	check_lines_lenght(char **lines)
 		j = 0;
 		while (lines[i][j] && (lines[i][j] == infos->obstacle
 			|| lines[i][j] == infos->empty))
-		{
 			j++;
-		}
 		if (j != size && size != -1)
 			return (0);
 		else
