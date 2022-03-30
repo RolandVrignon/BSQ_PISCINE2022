@@ -12,6 +12,18 @@
 
 #include "lib/utils.h"
 
+void	free_solution(t_solutions *solution)
+{
+	t_solutions	*prev;
+
+	while (solution != 0)
+	{
+		prev = solution->prev;
+		free(solution);
+		solution = prev;
+	}
+}
+
 t_solutions	*solve_process(t_solutions *solution, char **tab, t_infos *infos)
 {
 	t_point	*point;
@@ -64,7 +76,7 @@ char	**solve(char **tab, t_infos *infos)
 		}
 		i++;
 	}
-	free(solution);
+	free_solution(solution);
 	return (tab);
 }
 
