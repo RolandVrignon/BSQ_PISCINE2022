@@ -1,120 +1,93 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   solver.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rvrignon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/30 14:09:02 by rvrignon          #+#    #+#             */
+/*   Updated: 2022/03/30 14:40:33 by rvrignon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lib/utils.h"
 
-int     check_points(char **tab, t_point *point, int l, t_infos *infos)
+t_solutions	*solve_process(t_solutions *solution, char **tab, t_infos *infos)
 {
-    int j;
-    int i;
-    int j_cp;
-    int i_cp;
+	t_point	*point;
+	int		l;
+	int		i;
+	int		j;
 
-    j = point->x;
-    i = point->y;
-    j_cp = j;
-    i_cp = i;
-    while (i < i_cp + l)
-    {
-        j = j_cp;
-        while (j < j_cp + l && tab[i][j] != '\n')
-        {
-            if (tab[i][j] == infos->obstacle)
-                return (0);
-            j++;
-        }
-        i++;
-    }
-    return (1);
+	point = (t_point *)malloc(sizeof(t_point));
+	i = -1;
+	l = 1;
+	while (i++ + l <= infos->lines)
+	{
+		j = -1;
+		while (j++ + l <= infos->line_length)
+		{
+			point->x = j;
+			point->y = i;
+			while (check_points(tab, point, l, infos)
+				&& j + l <= infos->line_length && i + l <= infos->lines)
+			{
+				add_element(solution, i, j, l);
+				solution = solution->next;
+				l++;
+			}
+		}
+	}
+	return (solution);
 }
 
-t_solutions	*create_element(t_solutions *tmp, int x, int y, int l)
+char	**solve(char **tab, t_infos *infos)
 {
-	t_solutions	*solutions;
+	t_solutions	*solution;
+	int			i;
+	int			j;
+	int			l;
 
-	solutions = (t_solutions *)malloc(sizeof(t_solutions));
-    solutions->x = x;
-    solutions->y = y;
-    solutions->L = l;
-	solutions->next = NULL;
-	solutions->prev = tmp;
-	return (solutions);
+	solution = malloc(sizeof(t_solutions));
+	solution = create_element(0, 0, 0, 1);
+	solution = solve_process(solution, tab, infos);
+	i = solution->x;
+	j = solution->y;
+	l = solution->length;
+	while (i < solution->x + l)
+	{
+		j = solution->y;
+		while (j < solution->y + l)
+		{
+			tab[i][j] = infos->full;
+			j++;
+		}
+		i++;
+	}
+	return (tab);
 }
 
-void	add_element(t_solutions *solutions, int x, int y, int l)
+void	print_map(char **map, t_infos *infos, int line_length)
 {
-	t_solutions	*tmp;
+	int	i;
+	int	j;
+	int	x;
+	int	y;
 
-	while (solutions->next != NULL)
-		solutions = solutions->next;
-	tmp = solutions;
-	solutions->next = create_element(tmp, x, y, l);
-}
-
-char    **solve(char **tab, int x, int y, t_infos *infos)
-{
-    int l;
-    int i;
-    int j;
-    t_solutions *solution;
-    t_point *point;
-
-    solution = create_element(0, 0, 0, 1);
-    point = (t_point *)malloc(sizeof(t_point));
-    l = 1;
-    i = 0;
-    j = 0;
-    while (i + l <= y)
-    {
-        j = 0;
-        while (j + l <= x)
-        {
-            point->x = j;
-            point->y = i;
-            while(check_points(tab, point, l, infos) && j + l <= x && i + l <= y)
-            {
-                add_element(solution, i, j, l);
-                solution = solution->next;
-                l++;
-            }
-            j++;
-        }
-        i++;
-    }
-    i = solution->x;
-    j = solution->y;
-    l = solution->L;
-    while (i < solution->x + l)
-    {
-        j = solution->y;
-        while(j < solution->y + l)
-        {
-            tab[i][j] = infos->full;
-            j++;
-        }
-        i++;
-    }
-    return(tab);
-}
-
-void    print_map(char **map, t_infos *infos, int line_length)
-{
-        int i;
-        int j;
-        int x;
-        int y;
-
-        x = line_length;
-        y = infos->lines;
-        i = 0;
-        while (i < y)
-        {
-            j = 0;
-            while (j< x)
-            {
-                write(1, &map[i][j], 1);
-                write(1, " ", 1);
-                j++;
-            }
-            write(1, "\n", 1);
-            i++;
-        }
-        write(1, "\n", 1);
+	x = line_length;
+	y = infos->lines;
+	i = 0;
+	while (i < y)
+	{
+		j = 0;
+		while (j < x)
+		{
+			write(1, &map[i][j], 1);
+			write(1, " ", 1);
+			j++;
+		}
+		write(1, "\n", 1);
+		i++;
+	}
+	write(1, "\n", 1);
 }
