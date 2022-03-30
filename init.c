@@ -13,7 +13,7 @@ t_infos *get_informations(char *str)
     infos->empty = str[i - 3];
     infos->obstacle = str[i - 2];
     infos->full = str[i - 1];
-    line = ft_split_key(str);
+    line = ft_substr(str, 0, i - 3);
     infos->lines = ft_atoi(line);
     return (infos);
 }
