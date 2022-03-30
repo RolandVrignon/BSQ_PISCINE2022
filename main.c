@@ -13,6 +13,8 @@ int check_lines_lenght(char **lines)
     t_infos *infos;
 
     infos = get_informations(lines[0]);
+    if (infos->empty == infos->obstacle || infos->empty == infos->full || infos->full == infos->obstacle)
+        return (0);
 
     i = 1;
     size = -1;
