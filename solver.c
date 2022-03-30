@@ -38,7 +38,6 @@ t_solutions	*solve_process(t_solutions *solution, char **tab, t_infos *infos)
 			}
 		}
 	}
-	free(point);
 	return (solution);
 }
 
