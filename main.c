@@ -3,46 +3,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "lib/utils.h"
-#include <time.h>
-
-int check_lines_lenght(char **lines)
-{
-    int i;
-    int j;
-    int size;
-    t_infos *infos;
-
-    infos = get_informations(lines[0]);
-    if (infos->empty == infos->obstacle || infos->empty == infos->full || infos->full == infos->obstacle)
-        return (0);
-
-    i = 1;
-    size = -1;
-    while (lines[i])
-    {
-        j = 0;
-        while (lines[i][j] && (lines[i][j] == infos->obstacle || lines[i][j] == infos->empty))
-        {
-            j++;
-        }
-        if (j != size && size != -1)
-            return (0);
-        else
-            size = j;
-        i++;
-    }
-    return (1);
-}
 
 int main(int ac, char **av)
 {
-    t_infos *infos;
     char **lines;
     int i;
-    int x;
-    int y;
-    int line_length;
-    char **map;
 
     if (ac >= 2)
     {
@@ -50,26 +15,17 @@ int main(int ac, char **av)
         while (av[i])
         {
             lines = open_file(av[i]);
-            if (!lines || !check_lines_lenght(lines))
-            {
-                write(1, "map error\n\n", 11);
+            if (!check(lines))
                 i++;
-            }
             else
             {
-                infos = get_informations(lines[0]);
-                line_length = get_line_length(lines[1]);
-                map = create_tab(lines, infos, line_length);
-                x = line_length;
-                y = infos->lines;
-                map = solve(map, x, y, infos);
-                print_map(map, infos, line_length);
-                free(lines);
-                free(map);
+                make_process(lines);
                 i++;
             }
         }
     }
+    else if (ac == 1)
+        write(1, "Hello\n", 6);
 
     return (0);
 }

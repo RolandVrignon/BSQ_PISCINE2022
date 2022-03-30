@@ -103,4 +103,10 @@ int             get_line_length(char *lines);
 
 void            print_map(char **map, t_infos *infos, int line_length);
 
+int             check_lines_lenght(char **lines);
+
+int             check(char **lines);
+
+void            make_process(char **lines);
+
 #endif
