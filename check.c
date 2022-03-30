@@ -56,18 +56,40 @@ int	check(char **lines)
 
 	i = 0;
 	go = 1;
-	infos = get_informations(lines[0]);
+	if (!lines)
+	{
+		write(1, "map error\n\n", 11);
+		return (0);
+	}
 	while (lines[i])
 		i++;
-	if (!lines)
-		go = 0;
-	else if (infos->lines != i - 1)
+	infos = get_informations(lines[0]);
+	if (infos->lines != i - 1)
 		go = 0;
 	else if (!check_lines_lenght(lines))
 		go = 0;
 	if (go == 0)
 		write(1, "map error\n\n", 11);
 	return (go);
+}
+
+void	free_stuffs(char **lines, char **map, t_infos *infos)
+{
+	int	i;
+	
+	i = 0;
+	while (i < infos->lines)
+	{
+		free(lines[i]);
+		i++;
+	}
+	i = 0;
+	while (i < infos->lines)
+	{
+		free(map[i]);
+		i++;
+	}
+	free(infos);
 }
 
 void	make_process(char **lines)
@@ -82,7 +104,5 @@ void	make_process(char **lines)
 	map = create_tab(lines, infos, line_length);
 	map = solve(map, infos);
 	print_map(map, infos, line_length);
-	free(lines);
-	free(map);
-	free(infos);
+	free_stuffs(lines, map, infos);
 }
