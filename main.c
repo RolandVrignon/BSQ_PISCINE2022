@@ -10,13 +10,16 @@ int check_lines_lenght(char **lines)
     int i;
     int j;
     int size;
+    t_infos *infos;
+
+    infos = get_informations(lines[0]);
 
     i = 1;
     size = -1;
     while (lines[i])
     {
         j = 0;
-        while (lines[i][j])
+        while (lines[i][j] && (lines[i][j] == infos->obstacle || lines[i][j] == infos->empty))
         {
             j++;
         }

@@ -6,9 +6,8 @@ t_infos *get_informations(char *str)
     int i;
     char *line;
 
-
-    infos = (t_infos *)malloc(sizeof(t_infos));
     i = 0;
+    infos = (t_infos *)malloc(sizeof(t_infos));
     while (str[i] != '\0')
         i++;
     infos->empty = str[i - 3];
