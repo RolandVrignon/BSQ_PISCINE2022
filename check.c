@@ -76,7 +76,7 @@ int	check(char **lines)
 void	free_stuffs(char **lines, char **map, t_infos *infos)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < infos->lines)
 	{

@@ -16,27 +16,26 @@
 
 char	*parser(int file)
 {
-	int 	fd;
-	char 	ch;
-	char 	*filename;
-	
+	int		fd;
+	char	ch;
+	char	*filename;
+
 	filename = malloc(sizeof(char) * 9);
 	filename = "./tmp.ox";
 	fd = open(filename, O_WRONLY | O_APPEND | O_CREAT, 0644);
 	if (fd == -1)
 		return (0);
-	while(read(file, &ch, 1) != 0 && ch != EOF)
+	while (read(file, &ch, 1) != 0 && ch != EOF)
 		write(fd, &ch, 1);
 	close(fd);
 	return (filename);
 }
 
-
 int	main(int ac, char **av)
 {
 	char	**lines;
 	int		i;
-	char 	*file;
+	char	*file;
 
 	if (ac >= 2)
 	{
