@@ -23,7 +23,7 @@ int	check_points(char **tab, t_point *point, int l, t_infos *infos)
 	i = point->y;
 	j_cp = j;
 	i_cp = i;
-	while (i < i_cp + l)
+	while (i < i_cp - 1 + l)
 	{
 		j = j_cp;
 		while (j < j_cp + l && tab[i][j] != '\n')
